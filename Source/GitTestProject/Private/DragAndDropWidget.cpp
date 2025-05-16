@@ -18,10 +18,15 @@ bool UDragAndDropWidget::NativeOnDrop(const FGeometry& InGeometry, const FDragDr
 		return false;
 	}
 
+	UE_LOG(LogTemp, Warning, TEXT("NativeOnDrop"));
+	
 	const FVector2D offset = InGeometry.AbsoluteToLocal(InDragDropEvent.GetScreenSpacePosition());
 	const FVector2D offsetResult = offset - op->DragOffset;
 
-	op->GrabWidget->AddToViewport();
+	// op->GrabWidget->RemoveFromParent();
+	// op->GrabWidget->AddToViewport();
+
+	
 	op->GrabWidget->SetVisibility(ESlateVisibility::Visible);
 	op->GrabWidget->SetPositionInViewport(offsetResult, false);
 

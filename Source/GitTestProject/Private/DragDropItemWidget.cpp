@@ -13,6 +13,7 @@ void UDragDropItemWidget::NativeOnInitialized()
 
 FReply UDragDropItemWidget::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
 {
+	UE_LOG(LogTemp, Warning, TEXT("NativeOnMouseButtonDown"));
 	Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
 
 	return CustomDetectDrag(InMouseEvent, this, EKeys::LeftMouseButton);
@@ -21,6 +22,8 @@ FReply UDragDropItemWidget::NativeOnMouseButtonDown(const FGeometry& InGeometry,
 void UDragDropItemWidget::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent,
 	UDragDropOperation*& OutOperation)
 {
+	UE_LOG(LogTemp, Warning, TEXT("NativeOnDragDetected"));
+	
 	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
 
 	UMyDragDropOperation* op = NewObject<UMyDragDropOperation>();
@@ -52,6 +55,8 @@ FReply UDragDropItemWidget::NativeOnPreviewMouseButtonDown(const FGeometry& InGe
 FReply UDragDropItemWidget::CustomDetectDrag(const FPointerEvent& InMouseEvent, UWidget* WidgetDetectingDrag,
                                             FKey DragKey)
 {
+	UE_LOG(LogTemp, Warning, TEXT("CustomDetectDrag"));
+	
 	if ( InMouseEvent.GetEffectingButton() == DragKey /*|| PointerEvent.IsTouchEvent()*/ )
 	{
 		FEventReply Reply;
